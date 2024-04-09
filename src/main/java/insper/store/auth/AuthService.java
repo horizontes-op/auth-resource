@@ -47,7 +47,7 @@ public class AuthService {
 
         // Cria um token JWT
         @SuppressWarnings("null")
-        final String token = jwtService.create(account.id(), account.name(), "regular");
+        final String token = jwtService.create(account.id(), account.name(), account.role());
 
         return LoginOut.builder()
             .token(token)
