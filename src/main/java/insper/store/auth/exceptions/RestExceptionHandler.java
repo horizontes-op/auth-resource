@@ -6,6 +6,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import insper.store.auth.ExceptionCustomized.UnauthorizedException;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         @ExceptionHandler(NullPointerException.class)
@@ -30,5 +32,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             RestErrorMessage error = new RestErrorMessage(HttpStatus.SC_INTERNAL_SERVER_ERROR, "Operação não suportada: " + ex.getMessage());
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(error);
         }
+
+        @ExceptionHandler(UnauthorizedException.class)
+        private ResponseEntity<RestErrorMessage> handleUnauthorizedException(UnauthorizedException ex) {
+            RestErrorMessage error = new RestErrorMessage(HttpStatus.SC_UNAUTHORIZED, "Acesso não autorizado: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.SC_UNAUTHORIZED).body(error);
+        }
+
        
 }
