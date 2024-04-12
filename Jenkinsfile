@@ -10,7 +10,17 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }      
+        }   
+         stage('Build Acount') {
+            steps {
+                build job: 'account push', wait: true
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh 'mvn clean package'
+            }
+        }    
         stage('Build Image') {
             steps {
                 script {
