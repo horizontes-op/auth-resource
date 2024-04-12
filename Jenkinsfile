@@ -1,22 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build Account') {
-            steps {
-                script {
-                    // Executa o job "account" e armazena o status de retorno
-                    def accountStatus = build job: 'account', propagate: false
-                    if (accountStatus == 'SUCCESS') {
-                        echo 'Job "account" executado com sucesso.'
-                    } else {
-                        error 'Falha ao executar o job "account".'
-                    }
-                }
-            }
-        }
-        stage('Build Auth-Resource') {
+        stage('Build Auth') {
             steps {
                 build job: 'auth', wait: true
+            }
+        }
+        stage('Build account') {
+             steps {
+                build job: 'account', wait: true
             }
         }
         stage('Build') { 
