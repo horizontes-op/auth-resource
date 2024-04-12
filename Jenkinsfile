@@ -1,30 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('Build Auth') {
+        stage('build auth interface') {
             steps {
                 build job: 'auth', wait: true
             }
         }
-        stage('Build account') {
+        stage('build account interface') {
              steps {
                 build job: 'account push', wait: true
             }
         }
-        stage('Build') { 
+        stage('build aluno interface') { 
             steps {
                 sh 'mvn clean package'
             }
         }   
          
-        stage('Build Image') {
+        stage('build image aluno') {
             steps {
                 script {
                     account = docker.build("fernandowi55/auth:${env.BUILD_ID}", "-f Dockerfile .")
                 }
             }
         }
-        stage('Push Image') {
+        stage('push image aluno') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credential') {
