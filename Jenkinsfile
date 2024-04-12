@@ -16,7 +16,7 @@ pipeline {
                 build job: 'account push', wait: true
             }
         }
-        stage('Build') { 
+        stage('Build-Account') { 
             steps {
                 sh 'mvn clean package'
             }
