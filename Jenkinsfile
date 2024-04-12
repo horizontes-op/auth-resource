@@ -8,7 +8,7 @@ pipeline {
         }
         stage('build account interface') {
              steps {
-                build job: 'account push', wait: true
+                build job: 'account', wait: true
             }
         }
         stage('build aluno interface') { 
