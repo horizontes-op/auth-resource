@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build account') {
              steps {
-                build job: 'account', wait: true
+                build job: 'account push', wait: true
             }
         }
         stage('Build') { 
