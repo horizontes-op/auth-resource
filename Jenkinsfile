@@ -3,28 +3,28 @@ pipeline {
     stages {
         stage('auth interface') {
             steps {
-                build job: 'auth', wait: true
+                build job: 'auth-interface', wait: true
             }
         }
         stage('account interface') {
              steps {
-                build job: 'account', wait: true
+                build job: 'account-interface', wait: true
             }
         }
-        stage('build aluno interface') { 
+        stage('build  auth') { 
             steps {
                 sh 'mvn clean package'
             }
         }   
          
-        stage('build image aluno') {
+        stage('build image auth') {
             steps {
                 script {
                     account = docker.build("fernandowi55/auth:${env.BUILD_ID}", "-f Dockerfile .")
                 }
             }
         }
-        stage('push image aluno') {
+        stage('push image auth') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credential') {
