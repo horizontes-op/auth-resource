@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('build auth interface') {
+        stage('auth interface') {
             steps {
                 build job: 'auth', wait: true
             }
         }
-        stage('build account interface') {
+        stage('account interface') {
              steps {
                 build job: 'account', wait: true
             }
