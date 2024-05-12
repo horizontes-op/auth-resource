@@ -45,10 +45,10 @@
 		</dependency>
 
 		<!-- permite o registro em um servico de discovery -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<!-- habilitar para fazer uso de outros microsservicos -->
 		<dependency>
