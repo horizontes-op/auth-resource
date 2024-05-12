@@ -15,10 +15,14 @@ spec:
     spec:
       containers:
       - name: auth
+
         image: fernandowi55/auth:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        env:
+        - name: eureka.client.service-url.defaultZone
+          value: http://10.100.110.190:8761/eureka/
 
       
 ---
