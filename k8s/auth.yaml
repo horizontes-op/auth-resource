@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: fernandowi55/store-auth:latest
+        image: fernandowi55/auth:latest
         ports:
         - containerPort: 8082
       
