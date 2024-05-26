@@ -20,7 +20,7 @@ pipeline {
         stage('build image auth') {
             steps {
                 script {
-                    account = docker.build("fernandowi55/auth:${env.BUILD_ID}", "-f Dockerfile .")
+                    account = docker.build("esdrasgc/auth:${env.BUILD_ID}", "-f Dockerfile .")
                 }
             }
         }
