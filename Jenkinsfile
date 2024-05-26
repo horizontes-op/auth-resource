@@ -38,7 +38,9 @@ pipeline {
 
         stage('Deploy on k8s') {
             steps {
-                sh "kubectl apply -f ./k8s/auth.yaml"
+                sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT} --insecure-skip-tls-verify=true apply -f ./k8s/deployment.yaml --validate=false"
+                sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT} --insecure-skip-tls-verify=true apply -f ./k8s/service.yaml --validate=false"
+                
             }
         }
 
